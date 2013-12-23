@@ -1,0 +1,41 @@
+body {
+	padding: 20px;
+}
+
+h1 {
+	font-size: 25px;
+	line-height: normal;
+	margin-top: 15px;
+	margin-top: 10px;
+}
+
+h2 {
+	font-size: 16px;
+	line-height: normal;
+	margin-top: 10px;
+	margin-top: 5px;
+}
+header {
+	padding-bottom: 10px;
+	color: #555;
+}
+
+.jumbo-actions {
+	padding: 40px 30px;
+}
+
+.bell, .rope {
+	padding: 20px;
+	margin: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #FFD07C;
+}
+
+.active-pad {
+	background-color: #FFA608;
+}
+
+.disconnected {
+	background-color: #eee;
+}

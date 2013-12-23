@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Christmas Bell</title>
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"></script>
+  	<link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body ng-app="ChirstmasBellApp">
+	<header>
+		<a href="/"><h1><i class="glyphicon glyphicon-tree-conifer"></i> Christmas Bell</h1></a>
+	</header>
+
+	<div ng-controller="MainCtrl">
+		<div ng-view></div>
+	</div>	
+
+	<audio src="/audio/bell.mp3" preload="auto" id="bellSound"></audio>
+
+	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-route.min.js"></script>
+  	<script src="/socket.io/socket.io.js"></script>
+  	<script src="/javascripts/app.js"></script>
+  	<script src="/javascripts/controllers/bellctrl.js"></script>
+  	<script src="/javascripts/controllers/ropectrl.js"></script>
+	<script>
+		var href = window.location.href;
+		var socketPath = href.substring(0, href.length - window.location.pathname.length);		
+
+		var bellSound = document.getElementById('bellSound');
+		window.christmasBell = {};
+		window.christmasBell.playBell = function playBell() {
+			bellSound.play();
+		};
+	  
+	</script>
+
+
+</body>
+</html>

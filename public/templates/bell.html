@@ -1,0 +1,18 @@
+<div class="bell active-pad">
+	<h2><i class="glyphicon glyphicon-bell"></i> I am a bell #{{id}}</h2>
+	<button class="btn btn-primary" ng-click="playBell()">Test my sound</button>
+</div>
+
+<div class="rope" ng-class="{'disconnected': !ropeConnected}">
+	<div ng-hide="ropeConnected" >
+		<h2>Rope - not connected</h2>
+		<ol>
+			<li>Open this page on another device</li>
+			<li>Choose connect a rope</li>
+			<li>Fill bell# as <b>{{id}}</b></li>
+		</ol>
+	</div>
+	<div class="connected" ng-show="ropeConnected">
+		<h2>Rope - connected :)</h2>
+	</div>
+</div>

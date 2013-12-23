@@ -1,0 +1,15 @@
+<div class="bell"  ng-class="{'disconnected': !bellConnected}">
+	<div ng-hide="bellConnected">
+		<h2><i class="glyphicon glyphicon-bell"></i> Bell - not connected</h2>
+		<input placeholder="Bell#" ng-model="id"/>
+		<button class="btn btn-primary" ng-click="connect(id)">Connect</button>
+	</div>
+	<div ng-show="bellConnected">
+		<h2><i class="glyphicon glyphicon-bell"></i> Bell #{{id}} connected :)</h2>
+	</div>
+</div>
+
+<div class="rope active-pad">
+	<h2><i class="glyphicon glyphicon-link"></i> I am a rope</h2>
+	<button class="btn btn-primary" ng-click="ringTheBell()" ng-disable="!bellConnected">Ring the bell</button>
+</div>
