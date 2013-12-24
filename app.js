@@ -33,8 +33,12 @@ app.configure('production', function(){
 
 app.get('/*', routes.index);
 
+console.log('socketio starting...');
 var io = socketio.listen(app);
-app.listen(3000);
+console.log('socketio listening...');
+app.listen(process.env.port);
+
+console.log('socketio OK');
 
 var connections = {};
 function getConnection(id) {
