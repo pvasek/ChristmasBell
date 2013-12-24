@@ -12,24 +12,29 @@
 <div class="rope active-pad">
 	<h2><i class="glyphicon glyphicon-link"></i> I am a rope</h2>
 	
-	<p>
-		<button class="btn btn-primary" ng-click="ringTheBell()" ng-disable="!bellConnected">
-			Ring the bell - NOW
-		</button>
-	</p>
-	<p>
-		<button class="btn btn-primary" ng-click="ringTheBell(30)" ng-disable="!bellConnected">
-			Ring the bell - in 30 seconds
-		</button>
-	</p>
-	<p>
-		<button class="btn btn-primary" ng-click="ringTheBell(60)" ng-disable="!bellConnected">
-			Ring the bell - in 1 minute
-		</button>
-	</p>
-	<p>
-		<button class="btn btn-primary" ng-click="ringTheBell(180)" ng-disable="!bellConnected">
-			Ring the bell - in 3 minutes
-		</button>
-	</p>
+	<div ng-hide="bellConnected">
+		<p>
+			<button class="btn btn-primary" ng-click="ringTheBell()">
+				Ring the bell - NOW
+			</button>
+		</p>
+		<p>
+			<button class="btn btn-primary" ng-click="ringTheBell(30)">
+				Ring the bell - in 30 seconds
+			</button>
+		</p>
+		<p>
+			<button class="btn btn-primary" ng-click="ringTheBell(60)">
+				Ring the bell - in 1 minute
+			</button>
+		</p>
+		<p>
+			<button class="btn btn-primary" ng-click="ringTheBell(180)">
+				Ring the bell - in 3 minutes
+			</button>
+		</p>
+	</div>
+	<div ng-show="bellConnected">
+		After you are connected to your bell you will be able to ring it.
+	</div>
 </div>
