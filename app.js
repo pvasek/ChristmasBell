@@ -76,6 +76,9 @@ function removeFromRopes(socket) {
 
 
 var notifyAll = function(conn) {
+    if (!conn) {
+      console.warn('notifyAll: with empty connection');
+    }
     var data = {ropeCount: conn.ropes.length, bellCount: conn.bells.length};
     conn.bells.forEach(function(item){
       item.emit('bell-changed', data);
@@ -83,6 +86,8 @@ var notifyAll = function(conn) {
     conn.ropes.forEach(function(item){
       item.emit('bell-changed', data);
     });
+    console.log('notifyAll: ');
+    console.log(data);
 };
 
 io.sockets.on('connection', function (socket) {
@@ -92,30 +97,34 @@ io.sockets.on('connection', function (socket) {
   socket.on('connect-bell', function (data) {
     console.log('SC: connect-bell');
     var conn = getConnection(data.id);
-    conn.bells.push(socket);
+    conn.bells.push(socket);    
     notifyAll(conn);
   });
 
   socket.on('connect-rope', function (data) {
     console.log('SC: connect-rope');
     var conn = getConnection(data.id);
-    conn.ropes.push(socket);
+    conn.ropes.push(socket);    
     notifyAll(conn);
   });
 
-  socket.on('ring-bell', function (data) {
+  socket.on('ring-bell', function (data, fn) {
     console.log('SC: ring-bell');
     var conn = getConnection(data.id);
     conn.bells.forEach(function(item){
       item.emit('ringing', data);
     });
+    fn({scheduledId: 'tmp'});
   });
 
   socket.on('disconnect', function (data) {
     console.log('SC: disconnecting');
     var conn = removeFromBells(socket) ||
       removeFromRopes(socket);
+
+    if (conn) {  
       notifyAll(conn);
+    }
 
     // TODO: notify clients
     //item.emit('bell-changed', {ropeCount: conn.ropes.length, bellCount: conn.bells.length});

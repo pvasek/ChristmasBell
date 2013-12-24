@@ -12,7 +12,7 @@
 <div class="rope active-pad">
 	<h2><i class="glyphicon glyphicon-link"></i> I am a rope</h2>
 	
-	<div ng-hide="bellConnected">
+	<div ng-show="bellConnected && !scheduled">
 		<p>
 			<button class="btn btn-primary" ng-click="ringTheBell()">
 				Ring the bell - NOW
@@ -34,11 +34,15 @@
 			</button>
 		</p>
 	</div>
-	<div ng-show="bellConnected">
+	<div ng-hide="bellConnected">
 		After you are connected to your bell you will be able to ring it.
+	</div>
+	<div ng-show="scheduled">
+		Your has been scheduled.
 	</div>
 </div>
 
 <ul ng-show="messages">
+	<h5>Messages:</h5>
 	<li ng-repeater="for m in messages">{{m}}</li>
 <ul>
