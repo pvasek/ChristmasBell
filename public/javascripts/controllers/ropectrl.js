@@ -13,23 +13,24 @@ module.controller('RopeCtrl', ['$scope', '$routeParams', function RopeCtrl($scop
 		});
 	});
 
+	[
+		'connecting', 
+		'connect', 
+		'reconnect', 
+		'reconnecting', 
+		'disconnect', 
+		'connect_failed', 
+		'error', 
+		'reconnect_failed'
+	].forEach(function(e){
+		socket.on(e, function(){
+			$scope.messages.push(e);
+		});
+	});
+	
 	socket.on('disconnect', function () {
 		$scope.bellConnected = false;
-		$scope.messages.push("disconnect");
 	});
-
-	socket.on('connect_failed', function () {
-		$scope.messages.push("connection failed");
-	});
-
-	socket.on('error', function () {
-		$scope.messages.push("connection failed");
-	});
-
-	socket.on('reconnect_failed', function () {
-		$scope.messages.push("reconnection failed");
-	});
-
 
 	$scope.ringTheBell = function(delay){		
 		socket.emit('ring-bell', {id: $scope.id, delay: delay}, function(data) {
