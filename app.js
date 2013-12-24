@@ -7,6 +7,7 @@ var express = require('express');
 var socketio = require('socket.io');
 var _ = require('underscore');
 var routes = require('./routes');
+var port = process.env.PORT || 1337;
 
 var app = module.exports = express.createServer();
 
@@ -36,7 +37,7 @@ app.get('/*', routes.index);
 console.log('socketio starting...');
 var io = socketio.listen(app);
 console.log('socketio listening...');
-app.listen(process.env.port);
+app.listen(port);
 
 console.log('socketio OK');
 
@@ -123,4 +124,4 @@ io.sockets.on('connection', function (socket) {
 
 });
 
-console.log("Express server listening on port %d in %s mode", process.env.port, app.settings.env);
+console.log("Express server listening on port %d in %s mode", port, app.settings.env);
