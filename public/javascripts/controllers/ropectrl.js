@@ -1,5 +1,7 @@
 module.controller('RopeCtrl', ['$scope', '$routeParams', function RopeCtrl($scope, $routeParams) {
 	
+	$scope.messages = [];
+	
 	var socket = io.connect(socketPath);
 
 	socket.on('bell-changed', function (data) {
@@ -8,6 +10,25 @@ module.controller('RopeCtrl', ['$scope', '$routeParams', function RopeCtrl($scop
 		});
 	});
 
+	socket.on('disconnect', function () {
+		$scope.bellConnected = false;
+	});
+
+	socket.on('disconnect', function () {
+		$scope.bellConnected = false;
+	});
+
+	socket.on('connect_failed', function () {
+		$scope.messages.push("connection failed");
+	});
+
+	socket.on('error', function () {
+		$scope.messages.push("connection failed");
+	});
+
+	socket.on('reconnect_failed', function () {
+		$scope.messages.push("reconnection failed");
+	});
 
 
 	$scope.ringTheBell = function(delay){		
