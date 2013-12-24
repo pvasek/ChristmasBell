@@ -26,7 +26,34 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-route.min.js"></script>
   	<script src="/socket.io/socket.io.js"></script>
-  	<script src="/javascripts/client_app/christmasbell.js"></script>
+  	<!--<script src="/javascripts/client_app/christmasbell.js"></script>-->
+
+	<script>
+	function generateId() {
+		return Math.floor((1 + Math.random()) * 100000)
+     .toString();	  		
+	}
+
+	var module = angular.module('ChirstmasBellApp', ['ngRoute']);
+	module.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
+		$routeProvider
+			.when('/bell/:id', {templateUrl: '/templates/bell.html', controller: 'BellCtrl'})
+			.when('/rope/:id?', {templateUrl: '/templates/rope.html', controller: 'RopeCtrl'})
+			.when('/', {templateUrl: '/templates/intro.html', controller: 'HomeCtrl'})
+			.otherwise({redirectTo: '/'});
+
+		$locationProvider.html5Mode(true);
+	}]);
+
+	module.controller('MainCtrl', ['$scope', function MainCtrl($scope) {
+	}]);
+
+	module.controller('HomeCtrl', ['$scope', '$routeParams', '$location', 
+		function HomeCtrl($scope, $routeParams, $location) {
+			$scope.id = generateId();
+		}]);
+	</script>
+
   	<script src="/javascripts/controllers/bellctrl.js"></script>
   	<script src="/javascripts/controllers/ropectrl.js"></script>
 	<script>
