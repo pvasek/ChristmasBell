@@ -15,7 +15,7 @@ module.controller('BellCtrl', ['$scope', '$routeParams', '$timeout',
   	socket.on('ringing', function (data) {
   		$timeout(function(){
         $scope.playBell();
-  		}, data.delay || 0, true);	  		  		
+  		}, data.delay*1000 || 0, true);	  		  		
   	});
 
   	socket.emit('connect-bell', {id: $scope.id});

@@ -20,6 +20,13 @@ header {
 	color: #555;
 }
 
+footer {
+	padding-top: 20px;
+	font-size: 0.8em;
+	color: #666;
+}
+
+
 .jumbo-actions {
 	padding: 40px 30px;
 }

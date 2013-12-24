@@ -2,7 +2,7 @@
 	<div ng-hide="bellConnected">
 		<h2><i class="glyphicon glyphicon-bell"></i> Bell - not connected</h2>
 		<input placeholder="Bell#" ng-model="id"/>
-		<button class="btn btn-primary" ng-click="connect(id)">Connect</button>
+		<a class="btn btn-primary" ng-href="/rope/{{id}}">Connect</a>
 	</div>
 	<div ng-show="bellConnected">
 		<h2><i class="glyphicon glyphicon-bell"></i> Bell #{{id}} connected :)</h2>
@@ -11,5 +11,25 @@
 
 <div class="rope active-pad">
 	<h2><i class="glyphicon glyphicon-link"></i> I am a rope</h2>
-	<button class="btn btn-primary" ng-click="ringTheBell()" ng-disable="!bellConnected">Ring the bell</button>
+	
+	<p>
+		<button class="btn btn-primary" ng-click="ringTheBell()" ng-disable="!bellConnected">
+			Ring the bell - NOW
+		</button>
+	</p>
+	<p>
+		<button class="btn btn-primary" ng-click="ringTheBell(30)" ng-disable="!bellConnected">
+			Ring the bell - in 30 seconds
+		</button>
+	</p>
+	<p>
+		<button class="btn btn-primary" ng-click="ringTheBell(60)" ng-disable="!bellConnected">
+			Ring the bell - in 1 minute
+		</button>
+	</p>
+	<p>
+		<button class="btn btn-primary" ng-click="ringTheBell(180)" ng-disable="!bellConnected">
+			Ring the bell - in 3 minutes
+		</button>
+	</p>
 </div>

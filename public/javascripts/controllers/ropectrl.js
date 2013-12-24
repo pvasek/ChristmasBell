@@ -1,5 +1,4 @@
 module.controller('RopeCtrl', ['$scope', '$routeParams', function RopeCtrl($scope, $routeParams) {
-	$routeParams.id;
 	
 	var socket = io.connect(socketPath);
 
@@ -11,8 +10,11 @@ module.controller('RopeCtrl', ['$scope', '$routeParams', function RopeCtrl($scop
 
 
 
-	$scope.ringTheBell = function(){
-		socket.emit('ring-bell', {id: $scope.id});
+	$scope.ringTheBell = function(delay){		
+		socket.emit('ring-bell', {id: $scope.id, delay: delay}, function(data) {
+			$scope.scheduled = true;
+			$scope.scheduledId = data.scheduledId;
+		});
 	};
 
 	$scope.connect = function(id) {
